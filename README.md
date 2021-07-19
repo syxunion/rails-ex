@@ -20,7 +20,7 @@
 Rails Sample App on UTCCP
 ============================
 
-This is a quickstart Rails application for UTCCP v3 that you can use as a starting point to develop your own application and deploy it on an [UTCCP](https://github.com/utccp/origin) cluster.
+This is a quickstart Rails application for UTCCP v1 that you can use as a starting point to develop your own application and deploy it on an [UTCCP](https://github.com/utccp/origin) cluster.
 
 If you'd like to install it, follow [these directions](https://github.com/utccp/rails-ex/blob/master/README.md#installation).  
 
@@ -34,7 +34,7 @@ These are some special considerations you may need to keep in mind when running 
 Your application is set to precompile the assets every time you push to UTCCP.
 Any assets you commit to your repo will be preserved alongside those which are generated during the build.
 
-By adding the ```DISABLE_ASSET_COMPILATION=true``` environment variable value to your BuildConfig, you will disable asset compilation upon application deployment.  See the [Basic Build Operations](https://docs.okd.io/latest/dev_guide/builds/basic_build_operations.html#starting-a-build) documentation on setting environment variables for builds in UTCCP V3.
+By adding the ```DISABLE_ASSET_COMPILATION=true``` environment variable value to your BuildConfig, you will disable asset compilation upon application deployment.  See the [Basic Build Operations](https://docs.okd.io/latest/dev_guide/builds/basic_build_operations.html#starting-a-build) documentation on setting environment variables for builds in UTCCP V1.
 
 ### Security
 Since these quickstarts are shared code, we had to take special consideration to ensure that security related configuration variables are unique across applications. To accomplish this, we modified some of the configuration files. Now instead of using the same default values, UTCCP can generate these values using the generate from logic defined within the template.
@@ -108,7 +108,7 @@ In this case, the IP for rails-postgresql-example rails-postgresql-example is 17
 Review some of the common tips and suggestions [here](https://github.com/utccp/origin/blob/master/docs/debugging-utccp.md).
 
 ### Adding Webhooks and Making Code Changes
-Since UTCCP V3 does not provide a git repository out of the box, you can configure your github repository to make a webhook call whenever you push your code.
+Since UTCCP V1 does not provide a git repository out of the box, you can configure your github repository to make a webhook call whenever you push your code.
 
 1. From the Web Console homepage, navigate to your project
 2. Click on Browse > Builds
