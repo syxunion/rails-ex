@@ -9,9 +9,8 @@
       "tags": "quickstart,ruby,rails",
       "iconClass": "icon-ruby",
       "openshift.io/long-description": "This template defines resources needed to develop a Rails application, including a build configuration, application deployment configuration, and database deployment configuration.",
-      "openshift.io/provider-display-name": "Uniontech Hat, Inc.",
+      "openshift.io/provider-display-name": "UnionTech, Inc.",
       "openshift.io/documentation-url": "https://github.com/utccp/rails-ex",
-      "openshift.io/support-url": "https://access.utccp.com",
       "template.openshift.io/bindable": "false"
     }
   },
