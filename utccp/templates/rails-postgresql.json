@@ -2,23 +2,23 @@
   "kind": "Template",
   "apiVersion": "v1",
   "metadata": {
-    "name": "rails-pgsql-persistent",
+    "name": "rails-postgresql-example",
     "annotations": {
-      "openshift.io/display-name": "Rails + PostgreSQL",
-      "description": "An example Rails application with a PostgreSQL database. For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/rails-ex/blob/master/README.md.",
+      "openshift.io/display-name": "Rails + PostgreSQL (Ephemeral)",
+      "description": "An example Rails application with a PostgreSQL database. For more information about using this template, including UTCCP considerations, see https://github.com/utccp/rails-ex/blob/master/README.md.\n\nWARNING: Any data stored will be lost upon pod destruction. Only use this template for testing.",
       "tags": "quickstart,ruby,rails",
       "iconClass": "icon-ruby",
-      "openshift.io/long-description": "This template defines resources needed to develop a Rails application, including a build configuration, application deployment configuration, and database deployment configuration.",
-      "openshift.io/provider-display-name": "Red Hat, Inc.",
-      "openshift.io/documentation-url": "https://github.com/sclorg/rails-ex",
-      "openshift.io/support-url": "https://access.redhat.com",
+      "openshift.io/long-description": "This template defines resources needed to develop a Rails application, including a build configuration, application deployment configuration, and database deployment configuration.  The database is stored in non-persistent storage, so this configuration should be used for experimental purposes only.",
+      "openshift.io/provider-display-name": "Uniontech, Inc.",
+      "openshift.io/documentation-url": "https://github.com/utccp/rails-ex",
+      "openshift.io/support-url": "https://access.utccp.com",
       "template.openshift.io/bindable": "false"
     }
   },
-  "message": "The following service(s) have been created in your project: ${NAME}, ${DATABASE_SERVICE_NAME}.\n\nFor more information about using this template, including OpenShift considerations, see https://github.com/sclorg/rails-ex/blob/master/README.md.",
+  "message": "The following service(s) have been created in your project: ${NAME}, ${DATABASE_SERVICE_NAME}.\n\nFor more information about using this template, including UTCCP considerations, see https://github.com/utccp/rails-ex/blob/master/README.md.",
   "labels": {
-      "template": "rails-pgsql-persistent",
-      "app": "rails-pgsql-persistent"
+      "template": "rails-postgresql-example",
+      "app": "rails-postgresql-example"
   },
   "objects": [
     {
@@ -246,6 +246,10 @@
                     }
                   },
                   {
+                    "name": "POSTGRESQL_DATABASE",
+                    "value": "${DATABASE_NAME}"
+                  },
+                  {
                     "name": "SECRET_KEY_BASE",
                     "valueFrom": {
                       "secretKeyRef" : {
@@ -253,10 +257,6 @@
                         "key" : "keybase"
                       }
                     }
-                  },
-                  {
-                    "name": "POSTGRESQL_DATABASE",
-                    "value": "${DATABASE_NAME}"
                   },
                   {
                     "name": "POSTGRESQL_MAX_CONNECTIONS",
@@ -300,23 +300,6 @@
                 }
               }
             ]
-          }
-        }
-      }
-    },
-    {
-      "kind": "PersistentVolumeClaim",
-      "apiVersion": "v1",
-      "metadata": {
-        "name": "${DATABASE_SERVICE_NAME}"
-      },
-      "spec": {
-        "accessModes": [
-          "ReadWriteOnce"
-        ],
-        "resources": {
-          "requests": {
-            "storage": "${VOLUME_CAPACITY}"
           }
         }
       }
@@ -390,10 +373,8 @@
           "spec": {
             "volumes": [
               {
-                "name": "${DATABASE_SERVICE_NAME}-data",
-                "persistentVolumeClaim": {
-                  "claimName": "${DATABASE_SERVICE_NAME}"
-                }
+                "name": "data",
+                "emptyDir": {}
               }
             ],
             "containers": [
@@ -421,7 +402,7 @@
                 },
                 "volumeMounts": [
                   {
-                    "name": "${DATABASE_SERVICE_NAME}-data",
+                    "name": "data",
                     "mountPath": "/var/lib/pgsql/data"
                   }
                 ],
@@ -475,13 +456,13 @@
       "displayName": "Name",
       "description": "The name assigned to all of the frontend objects defined in this template.",
       "required": true,
-      "value": "rails-pgsql-persistent"
+      "value": "rails-postgresql-example"
     },
     {
       "name": "NAMESPACE",
       "displayName": "Namespace",
       "required": true,
-      "description": "The OpenShift Namespace where the ImageStream resides.",
+      "description": "The UTCCP Namespace where the ImageStream resides.",
       "value": "openshift"
     },
     {
@@ -499,18 +480,11 @@
       "value": "512Mi"
     },
     {
-      "name": "VOLUME_CAPACITY",
-      "displayName": "Volume Capacity",
-      "description": "Volume space available for data, e.g. 512Mi, 2Gi",
-      "value": "1Gi",
-      "required": true
-    },
-    {
       "name": "SOURCE_REPOSITORY_URL",
       "displayName": "Git Repository URL",
       "required": true,
       "description": "The URL of the repository with your application source code.",
-      "value": "https://github.com/sclorg/rails-ex.git"
+      "value": "https://github.com/utccp/rails-ex.git"
     },
     {
       "name": "SOURCE_REPOSITORY_REF",
