@@ -9,9 +9,8 @@
       "tags": "quickstart,ruby,rails",
       "iconClass": "icon-ruby",
       "openshift.io/long-description": "This template defines resources needed to develop a Rails application, including a build configuration, application deployment configuration, and database deployment configuration.  The database is stored in non-persistent storage, so this configuration should be used for experimental purposes only.",
-      "openshift.io/provider-display-name": "Uniontech, Inc.",
+      "openshift.io/provider-display-name": "UnionTech, Inc.",
       "openshift.io/documentation-url": "https://github.com/utccp/rails-ex",
-      "openshift.io/support-url": "https://access.utccp.com",
       "template.openshift.io/bindable": "false"
     }
   },
